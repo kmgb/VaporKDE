@@ -1,79 +1,113 @@
-
-// #TabsToolbar { visibility: collapse; }
-
-// #sidebar-box #sidebar-header {
-//   display: none !important;
-// }
-
-// .sidebar-splitter {
-//   display: none;
-// }
-
-// toolbar #nav-bar {
-//   background-color: #24272c !important;
-// }
-
+// Custom colors
 :root {
-  --vapor-titlebar-color: #24272c;
+  --vapor-background-color: rgb(36 39 44);
+  --vapor-titlebar-color: var(--vapor-background-color);
+  --vapor-titlebar-color-active: rgb(36 39 47);
   --vapor-border-color: #57595d;
 }
 
+// Color overrides
 html#main-window {
   --toolbar-bgcolor: var(--vapor-titlebar-color) !important;
   --toolbar-field-background-color: #151c23 !important;
   --lwt-accent-color-inactive: var(--lwt-accent-color) !important;
   --lwt-accent-color: var(--toolbar-bgcolor) !important;
-
-/*   --tab-selected-bgcolor:  */
 }
+
+#titlebar {
+  opacity: 1 !important;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+
+  &:not(:-moz-window-inactive) {
+    background-color: var(--vapor-titlebar-color-active) !important;
+  }
+}
+
+#TabsToolbar > .toolbar-items:-moz-window-inactive {
+  opacity: var(--inactive-titlebar-opacity);
+}
+
 .tab-background:is([selected], [multiselected]) {
   background-color: color-mix(in srgb, currentColor 11%, transparent) !important;
 }
 
-// TODO: Before providing the hover/inactive-hover variants of these icons as available from the KDE icons, need to
-// address how inactive darkening of the titlebar is handled. Firefox just reduces opacity of titlebar elements which
-// messes with the coloring of the icons
 .titlebar-close {
   > .toolbarbutton-icon {
-    background-image: url("data:image/svg+xml;utf8,<svg id='svg12' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'><path id='path905' class='color' d='M 10.707,9.293 18,16.586 25.293,9.293 26.707,10.707 19.414,18 26.707,25.293 25.293,26.707 18.000046,19.299262 10.707,26.707 9.293,25.293 16.586,18 9.293,10.707 Z' fill='%23ffffff' stroke-width='2.06729' /></svg>") !important;
-    // background-color: transparent !important;
+    background-image: url("./breeze-close-symbolic.svg") !important;
+    background-color: transparent !important;
+
+    &:-moz-window-inactive {
+      background-image: url("./breeze-close-inactive-symbolic.svg") !important;
+    }
   }
 
-  // &:hover > .toolbarbutton-icon {
-  //   background-image: url("data:image/svg+xml;utf8,<svg id='svg4' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'> <path id='path905' class='color' d='M 18,0 A 18,18 0 0 0 0,18 18,18 0 0 0 18,36 18,18 0 0 0 36,18 18,18 0 0 0 18,0 Z m -7.293,9.293 7.293,7.293 7.293,-7.293 1.4141,1.4141 -7.293,7.293 7.293,7.293 -1.4141,1.4141 -7.293,-7.293 -7.293,7.293 -1.4141,-1.4141 7.293,-7.293 -7.293,-7.293 z' fill='%23ffffff' stroke-width='2.25' /> <path id='path905-3' class='error' d='M 18,0 A 18,18 0 0 0 0,18 18,18 0 0 0 18,36 18,18 0 0 0 36,18 18,18 0 0 0 18,0 Z m -7.293,9.293 7.293,7.293 7.293,-7.293 1.4141,1.4141 -7.293,7.293 7.293,7.293 -1.4141,1.4141 -7.293,-7.293 -7.293,7.293 -1.4141,-1.4141 7.293,-7.293 -7.293,-7.293 z' fill='%23ff0404' opacity='0.5' stroke-width='2.25' /> </svg>") !important;
-  //   &:-moz-window-inactive {
-  //     background-image: url("data:image/svg+xml;utf8,<svg id='svg4' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'> <path id='path905-3' class='error' d='M 18,0 A 18,18 0 0 0 0,18 18,18 0 0 0 18,36 18,18 0 0 0 36,18 18,18 0 0 0 18,0 Z m -7.293,9.293 7.293,7.293 7.293,-7.293 1.4141,1.4141 -7.293,7.293 7.293,7.293 -1.4141,1.4141 -7.293,-7.293 -7.293,7.293 -1.4141,-1.4141 7.293,-7.293 -7.293,-7.293 z' fill='%23ff0404' stroke-width='2.25' /> </svg>") !important;
-  //   }
-  // }
+  &:hover > .toolbarbutton-icon {
+    background-image: url("./breeze-close-hover-symbolic.svg") !important;
+    &:-moz-window-inactive {
+      background-image: url("./breeze-close-hover-inactive-symbolic.svg") !important;
+      opacity: 1;
+    }
+  }
 }
 
 .titlebar-min {
   > .toolbarbutton-icon {
-    background-image: url("data:image/svg+xml;utf8,<svg id='svg3' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'> <path id='path988' d='M 8.707,13.293 7.293,14.707 18,25.414 28.707,14.707 27.293,13.293 18,22.586 Z' color='%23000000' color-rendering='auto' dominant-baseline='auto' fill='%23fefefe' image-rendering='auto' shape-rendering='auto' solid-color='%23000000' stroke-width='2.21699' /></svg>") !important;
-    // background-color: transparent !important;
+    background-image: url("./breeze-minimize-symbolic.svg") !important;
+    background-color: transparent !important;
+
+    &:-moz-window-inactive {
+      background-image: url("./breeze-minimize-inactive-symbolic.svg") !important;
+    }
   }
 
-  // &:hover > .toolbarbutton-icon {
-  //   background-image: url("data:image/svg+xml;utf8,<svg id='svg3' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'> <path id='path998' d='M 18,0 A 18,18 0 0 0 0,18 18,18 0 0 0 18,36 18,18 0 0 0 36,18 18,18 0 0 0 18,0 Z M 8.707,13.293 18,22.586 l 9.293,-9.293 1.4141,1.4141 -10.707,10.707 -10.707,-10.707 1.4141,-1.4141 z' fill='%23ffffff' stroke-width='1.59099' /> </svg>") !important;
-  //   &:-moz-window-inactive {
-  //     background-image: url("data:image/svg+xml;utf8,<svg id='svg3' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'> <path id='path998' d='M 18,0 A 18,18 0 0 0 0,18 18,18 0 0 0 18,36 18,18 0 0 0 36,18 18,18 0 0 0 18,0 Z M 8.707,13.293 18,22.586 l 9.293,-9.293 1.4141,1.4141 -10.707,10.707 -10.707,-10.707 1.4141,-1.4141 z' fill='%23ffffff' opacity='0.3' stroke-width='1.59099' /> </svg>") !important;
-  //   }
-  // }
-/*     background-image: url(chrome://browser/skin/window-controls/minimize.svg); */
+  &:hover > .toolbarbutton-icon {
+    background-image: url("./breeze-minimize-hover-symbolic.svg") !important;
+    &:-moz-window-inactive {
+      background-image: url("./breeze-minimize-hover-inactive-symbolic.svg") !important;
+    }
+  }
 }
 
-.titlebar-max > .toolbarbutton-icon {
-    background-image: url("data:image/svg+xml;utf8,<svg id='svg3' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'> <path id='path1093' d='M 17.9999,10.586 7.293,21.293 8.707,22.707 18,13.414 l 9.293,9.293 1.414,-1.414 z' color='%23000000' color-rendering='auto' dominant-baseline='auto' fill='%23ffffff' image-rendering='auto' shape-rendering='auto' solid-color='%23000000' stroke-width='1.58302' /></svg>") !important;
-/*     background-image: url(chrome://browser/skin/window-controls/maximize.svg); */
+.titlebar-max {
+  > .toolbarbutton-icon {
+    background-image: url("./breeze-maximize-symbolic.svg") !important;
+    background-color: transparent !important;
+
+    &:-moz-window-inactive {
+      background-image: url("./breeze-maximize-inactive-symbolic.svg") !important;
+    }
+  }
+
+  &:hover > .toolbarbutton-icon {
+    background-image: url("./breeze-maximize-hover-symbolic.svg") !important;
+    &:-moz-window-inactive {
+      background-image: url("./breeze-maximize-hover-inactive-symbolic.svg") !important;
+    }
+  }
 }
 
-.titlebar-restore > .toolbarbutton-icon {
-    background-image: url("data:image/svg+xml;utf8,<svg id='svg3' version='1.1' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'> <path id='path1034' d='M 18,7.586 7.586,18 18,28.414 28.414,18 Z m 0,2.828 7.586,7.585798 L 18,25.585 10.414,17.999798 Z' color='%23000000' color-rendering='auto' dominant-baseline='auto' fill='%23ffffff' image-rendering='auto' shape-rendering='auto' solid-color='%23000000' stroke-width='1.59755' /></svg>") !important;
-/*     background-image: url(chrome://browser/skin/window-controls/restore.svg); */
+.titlebar-restore {
+  > .toolbarbutton-icon {
+    background-image: url("./breeze-maximized-symbolic.svg") !important;
+    background-color: transparent !important;
+
+    &:-moz-window-inactive {
+      background-image: url("./breeze-maximized-inactive-symbolic.svg") !important;
+    }
+  }
+
+  &:hover > .toolbarbutton-icon {
+    background-image: url("./breeze-maximized-hover-symbolic.svg") !important;
+    &:-moz-window-inactive {
+      background-image: url("./breeze-maximized-hover-inactive-symbolic.svg") !important;
+    }
+  }
 }
 
 .titlebar-buttonbox-container > .titlebar-buttonbox > *:last-child {
   padding-right: 3px !important;
+  margin-right: 0px !important;
 }
 
 .titlebar-buttonbox > .titlebar-button > .toolbarbutton-icon {
@@ -82,7 +116,8 @@ html#main-window {
 }
 
 .titlebar-button {
-  padding-inline: 2px !important;
+  padding-inline: 0px !important;
+  margin-inline: 2px !important;
 }
 
 #navigator-toolbox {

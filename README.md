@@ -15,11 +15,11 @@ provides custom Firefox CSS to better match the theme.
 * Follow the instructions at https://www.reddit.com/r/FirefoxCSS/wiki/index/tutorials/ to set up/find your
 userChrome.css file
 * Copy userChrome.css from this folder to replace your userChrome.css
+* Copy the contents of "KDE Stuff" to the same folder as the userChrome.css you just copied over
 * Make sure you use this with the "Dark" theme on Firefox directly, not "System Auto" as that breaks a lot of styles
 
 # Copyright
 Copyright for the theme files belong to Valve (see Valve Stuff/README.md), but they are licensed under GPL version 3.
 As such, this repository is also licensed under GPL version 3.
 
-CSS inline SVGs for titlebar icons came from KDE's icons at /usr/share/themes/Breeze/assets/ and were adapted for CSS
-use by the command `cat breeze-close-symbolic.svg | sed -z -e 's/\s\+/ /g' -e 's/#/%23/g' -e 's/\x22/\x27/g`
+The titlebar icons are from KDE (located at /usr/share/themes/Breeze/assets/) and are licensed under LGPL-3.0-only (see KDE Stuff/README.md)
